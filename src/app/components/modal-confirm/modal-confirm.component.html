@@ -1,0 +1,15 @@
+<mat-card fxFlex="100" fxLayout="row wrap">
+  <mat-card-header fxFlex="100" class="bg-color-primary">
+    <mat-card-title fxFlex="100" class="text-white">
+      json message
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxFlex="100" fxLayout="row wrap">
+    <div mat-dialog-content>
+      {{ data.form }}
+    </div>
+    <button mat-flat-button (click)="closedDialog()">
+      <mat-icon> close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>

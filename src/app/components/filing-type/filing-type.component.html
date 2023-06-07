@@ -1,0 +1,110 @@
+<div class="Screen" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <mat-stepper linear #stepper >
+      <mat-step [stepControl]="form" >
+        <form [formGroup]="form" >
+          <div style="padding: 50px;"><ng-template matStepLabel style="padding: 50px;">Input Detail</ng-template></div>
+            <mat-label class="text-header">1.Tax Filling Detail</mat-label>
+            <mat-divider></mat-divider>
+            <mat-label class="text-withmat">Type of filling <p style="color: red">*</p>
+            </mat-label>
+
+            <mat-radio-group aria-label="Select an option" class="col-sm-offset-1 col-sm-15" formControlName="selectedOption">
+              <div *ngFor="let items of toFilling">
+              <mat-radio-button class="col-sm-offset-3"  [value]="items.key" (change)="sendValue(items.value)">{{items.value}}</mat-radio-button><mat-icon matTooltip="information" matTooltipPosition="right">help</mat-icon>
+              <!-- <mat-radio-button class="col-sm-offset-3"  value="1" (change)="sendValue()">Additional Filling</mat-radio-button><mat-icon matTooltip="information" matTooltipPosition="right">help</mat-icon> -->
+            </div>
+            </mat-radio-group>
+
+            <mat-label class="text-withmat">VAT Month<p style="color: red">*</p> </mat-label>
+            <app-month [form]="form"></app-month>
+
+            <app-year [form]="form"></app-year>
+
+            <div *ngIf="form.controls['selectedOption'].value == 1">
+            <mat-label class="text-withmat">Type<p style="color: red">*</p> </mat-label>
+            <mat-form-field>
+              <mat-label>Select Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of onTime" [value]="type" required>
+                  {{ type }}
+                </mat-option>
+              </mat-select><span *ngIf="this.form.controls['type'].value ==''" style="color:red;" class="help-block">Invalid Data</span>
+            </mat-form-field>
+            </div>
+
+            <div class="spaceWay2"></div>
+            <div  class="container">
+            <mat-label class="text-header2">2.Tax Computation</mat-label>  <a class="rightWay" href="#">View Exchange Rate</a></div>
+            <mat-divider class="spaceWay"></mat-divider>
+
+            <mat-label class="text-withmat">Provide total value taxable electronic service <p style="color: red">*</p></mat-label>
+            <app-sale-amount [form]="form"></app-sale-amount>
+            <app-tax-amount [form]="form"></app-tax-amount>
+
+
+            <div *ngIf="form.controls['selectedOption'].value == 1">
+            <mat-label class="text-withmat">In case of late filling and payment, or additional filling</mat-label>
+            <app-surcharge [form]="form"></app-surcharge>
+            <app-penalty [form]="form"></app-penalty>
+            <app-total-amount [form]="form"></app-total-amount>
+            </div>
+
+          <!-- <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          </mat-form-field> -->
+          <div class="card-container">
+            <button mat-button class="btn btn-secondary rounded-pill card card-small" >Back</button>
+            <button mat-button class="btn btn btn-dark rounded-pill card card-small" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="form" >
+        <form [formGroup]="form">
+          <ng-template matStepLabel>Review & Confirm</ng-template>
+          <mat-label class="text-header">Tax Filling Detail</mat-label>
+          <mat-divider></mat-divider>
+          <div class="col-sm-offset-1 col-sm-15">
+            <div class="text-withmat">
+              <div class="col-sm-offset-3">Type of filing</div><span class="data-confirm"> {{ f['selectedValue'].value }}</span>
+            </div>
+            <div class="text-withmat">
+              <div class="col-sm-offset-3">Vat Month </div><span class="data-confirm"> {{ f['month'].value }} {{ f['year'].value }}</span>
+            </div>
+          </div>
+            <div class="spaceWay"></div>
+            <mat-label class="header-confirm">Tax Computation</mat-label>
+            <mat-divider></mat-divider>
+            <div class="col-sm-offset-1 col-sm-15">
+              <div class="container">
+                <div class="text-withmat2">Total value of taxable electronic service exclusive of VAT</div><span class="rightWay2"> {{ f['saleAmount'].value }} THB</span>
+              </div>
+              <div class="container">
+                <div class="text-withmat2">Total VAT to be remitted <br> (7% of Total value of taxable electronic service exclusive of VAT) </div><span class="rightWay2"> {{ f['taxAmount'].value }} THB</span>
+              </div>
+              <div class="container">
+                <div class="text-withmat2">Total Amount Payable </div><span class="rightWay2"> {{ f['totalAmount'].value }} THB</span>
+              </div>
+            </div>
+
+            <mat-label class="header-confirm">Declaration</mat-label>
+            <mat-divider></mat-divider>
+            <div class="text-withmat">
+              <div class="col-sm-offset-3">I hereby certify that information given aboce are true and correct and agree to be bound by such information.</div>
+            </div>
+            <div class="spaceWay"></div>
+            <div class="topWay">
+            <button mat-button class="btn btn-secondary rounded-pill card card-small" matStepperPrevious>Back</button>
+            <button mat-button class="btn btn-secondary rounded-pill card card-small"  (click)="confirm($event)">Confirm and Submit</button>
+          </div>
+        </form>
+      </mat-step>
+
+    </mat-stepper>
+    </div>
+
+
+
+
+

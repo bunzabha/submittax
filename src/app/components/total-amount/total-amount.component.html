@@ -1,0 +1,8 @@
+<div class="container" [formGroup]="form">
+
+  <mat-label class="text-withmat">5.Total amount of VAT,surcharge and penalty<br class="break-md"> to be remitted</mat-label>
+
+
+  <input class="rightWay" type="text" id="totalVat" (focus)="removeCommas()" (blur)="addCommas($event)"  formControlName="totalAmount" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="THB" readonly>
+  </div>
+

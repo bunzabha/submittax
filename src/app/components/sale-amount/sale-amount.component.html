@@ -1,0 +1,8 @@
+<div class="container" [formGroup]="form">
+  <mat-label class="text-withmat" *ngIf="this.s['selectedOption'].value == '1'">1.Underdeclared Thai taxable electronic service</mat-label>
+  <mat-label class="text-withmat" *ngIf="this.s['selectedOption'].value == '0'">1.Total value of taxable electronic service exclusive of VAT</mat-label>
+  <div>
+  <input class="rightWay" type="text" id="totalVat" (focus)="removeCommas()" (blur)="addCommas($event)" formControlName="saleAmount" [(ngModel)]="inputValue" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="THB" required>
+  <span *ngIf="s['saleAmount'].errors?.required" style="color:red;" class="error-message">Invalid Data</span>
+</div>
+  </div>

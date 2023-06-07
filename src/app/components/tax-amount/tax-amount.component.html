@@ -1,0 +1,11 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <div class="container" [formGroup]="form">
+      <mat-label class="text-withmat">2.Total VAT to be remitted (7% of 1.)</mat-label>
+      <div>
+      <input class="rightWay" type="text" id="totalVat" (focus)="removeCommas()" (blur)="addCommas($event)" formControlName="taxAmount"  [(ngModel)]="inputValue" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="THB" required>
+      <span *ngIf="errorBlock" style="color:red;" class="error-message">Invalid Tax</span>
+      </div>
+      </div>
+

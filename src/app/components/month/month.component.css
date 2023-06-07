@@ -1,0 +1,102 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.step {
+  flex: 1;
+  padding: 1px;
+  padding-left: 1px;
+  padding-top: -20px;
+  padding-bottom: 22px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  width: 5px;
+  height: 20px;
+  border-radius: 50%;
+
+  text-align: center;
+  cursor: pointer;
+}
+
+.step.active {
+  background-color: #1976d2;
+}
+
+
+.vertical-middle {
+  vertical-align: middle;
+}
+
+
+.text-withmat {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 8px 5px;
+  padding-top: 30px;
+  margin-right: 100px;
+  color:#ffffff;
+}
+
+.text-header {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 8px 15px;
+  font-size: 20px;
+  font-weight: 500;
+  color:#ffffff;
+}
+
+p {
+  font-family: verdana;
+  margin-left: 5px;
+}
+
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+  margin: 0 8px 15px;
+  padding-right: 500px;
+  flex-wrap: wrap;
+  display: flex;
+  flex : 1 ;
+  padding: 1000px;
+}
+
+.mat-radio-group{
+  display: flex;
+  flex-wrap: wrap;
+  color:#ffffff;
+
+}
+
+.mat-icon{
+  margin-top: -3px;
+  margin-left: 20px;
+  margin-right: 100px;
+  margin-bottom: 5px;
+  font-size : 20px;
+  color:#ffffff;
+}
+
+.mat-form-field{
+  margin-top: -3px;
+  margin-right: 100px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  float:right;
+}
