@@ -13,13 +13,6 @@ export class PenaltyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public removeCommas() {
 
-  }
-
-  public addCommas(event : any) {
-
-
-  }
 
 }

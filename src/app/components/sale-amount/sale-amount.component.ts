@@ -26,9 +26,11 @@ export class SaleAmountComponent implements OnInit {
   // }
 
   public addCommas(event : any) {
-     if (this.inputValue) {
+    console.log("check event : ",event)
+    const saleAmount = this.form.value.saleAmount;
+    console.log("check event2 : ",saleAmount)
+     if (saleAmount) {
       const penalty = this.form.value.selectedOption == "1" ? 200.00 : 0.00;
-      const saleAmount = this.form.value.saleAmount;
       const nextSale = parseFloat(saleAmount) * 0.07;
       const taxA = nextSale.toFixed(2);
       const surCharge = this.form.value.selectedOption == "1" ? nextSale * 0.01 : 0.00;
@@ -51,6 +53,15 @@ export class SaleAmountComponent implements OnInit {
       this.cdRef.detectChanges();
       console.log("type : ",this.s['selectedOption'].value);
 
+     }
+     else{
+      this.form.patchValue({
+        saleAmount: this.cp.transform(saleAmount,' '),
+        taxAmount:  this.cp.transform(0.00,' '),
+        surCharge:  this.cp.transform(0.00,' '),
+        penalty:  this.cp.transform(200.00,' '),
+        totalAmount:  this.cp.transform(0.00,' '),
+      });
      }
   }
 

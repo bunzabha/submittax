@@ -43,41 +43,49 @@ export class FilingTypeComponent implements OnInit {
 
   public sendValue(value : string){
     const saleAmount = this.form.value.saleAmount;
-    const saleRe = saleAmount.replace(',','')
-    if (value == "0") {
-      const penalty = 0.00;
-      const nextSale = parseFloat(saleRe) * 0.07;
-      const taxA = nextSale.toFixed(2);
-      const surCharge = 0.00;
-      //const surC = surCharge.toFixed(2);
-      const total = nextSale + 0.00 + 0.00;
-      const penalFix = penalty.toFixed(2);
-      const zero = 0.00
-      const zeroFix = zero.toFixed(2);
-      this.form.patchValue({
-        surCharge:  this.cp.transform(surCharge,' '),
-        penalty:  this.cp.transform(penalty,' '),
-        totalAmount:  this.cp.transform(nextSale,' '),
 
-      });
+    if (value == "0") {
+      if (saleAmount) {
+        const saleRe = saleAmount.replace(',','')
+        const penalty = 0.00;
+        const nextSale = parseFloat(saleRe) * 0.07;
+        const taxA = nextSale.toFixed(2);
+        const surCharge = 0.00;
+        //const surC = surCharge.toFixed(2);
+        const total = nextSale + 0.00 + 0.00;
+        const penalFix = penalty.toFixed(2);
+        const zero = 0.00
+        const zeroFix = zero.toFixed(2);
+        this.form.patchValue({
+          surCharge:  this.cp.transform(surCharge,' '),
+          penalty:  this.cp.transform(penalty,' '),
+          totalAmount:  this.cp.transform(nextSale,' '),
+
+        });
+      }
+
     }
     else{
-      const penalty = 200.00;
-      const nextSale = parseFloat(saleRe) * 0.07;
-      const taxA = nextSale.toFixed(2);
-      const surCharge = nextSale * 0.01;
-      //const surC = surCharge.toFixed(2);
-      const total = nextSale + surCharge + penalty;
-      const penalFix = penalty.toFixed(2);
-      const zero = 0.00
-      const zeroFix = zero.toFixed(2);
-      this.form.patchValue({
-        saleAmount: this.cp.transform(saleRe, ' '),
-        surCharge:  this.cp.transform(surCharge,' '),
-        penalty:  this.cp.transform(penalty,' '),
-        totalAmount:  this.cp.transform(total,' '),
+      if(saleAmount){
+        const saleRe = saleAmount.replace(',','')
+        const penalty = 200.00;
+        const nextSale = parseFloat(saleRe) * 0.07;
+        const taxA = nextSale.toFixed(2);
+        const surCharge = nextSale * 0.01;
+        //const surC = surCharge.toFixed(2);
+        const total = nextSale + surCharge + penalty;
+        const penalFix = penalty.toFixed(2);
+        const zero = 0.00
+        const zeroFix = zero.toFixed(2);
+        this.form.patchValue({
+          saleAmount: this.cp.transform(saleRe, ' '),
+          surCharge:  this.cp.transform(surCharge,' '),
+          penalty:  this.cp.transform(penalty,' '),
+          totalAmount:  this.cp.transform(total,' '),
 
-      });
+        });
+      }
+
 
     }
 

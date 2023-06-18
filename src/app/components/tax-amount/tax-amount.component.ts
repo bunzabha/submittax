@@ -20,8 +20,9 @@ export class TaxAmountComponent implements OnInit {
   public addCommas(event : any) {
     const inputValue = event.target.value;
     const saleAmount = this.form.value.saleAmount;
-    const checkInvalid = parseFloat(saleAmount)-parseFloat(inputValue);
-    console.log("xx : ",typeof checkInvalid)
+    const delComma = saleAmount.replace(',','')
+    const checkInvalid = parseInt(delComma)-parseInt(inputValue);
+
 
     this.form.patchValue({
       taxAmount: this.cp.transform(event.target.value, ' '),
