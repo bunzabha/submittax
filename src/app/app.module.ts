@@ -25,6 +25,7 @@ import { TotalAmountComponent } from './components/total-amount/total-amount.com
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,9 +56,10 @@ import {MatCardModule} from '@angular/material/card';
     MatTooltipModule,
     MatSelectModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [CurrencyPipe, DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

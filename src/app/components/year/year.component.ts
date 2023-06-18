@@ -19,6 +19,7 @@ export class YearComponent implements OnInit {
 
   public yearTillNow(year: number): boolean {
     this.form.value.year = this.selectedYear;
+
     return year > this.currentYear;
   }
 

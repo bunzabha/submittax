@@ -1,4 +1,6 @@
 export class taxData {
+  selectedOption: any;
+  selectedValue: any;
   filingType: any;
   month: any;
   year: any;

@@ -1,10 +1,10 @@
-<mat-form-field [formGroup]="form" [ngClass]="{'is-invalid':m.errors?.required}">
+<mat-form-field [formGroup]="form" >
   <mat-label>Select Month</mat-label>
   <mat-select formControlName="month">
     <mat-option *ngFor="let month of months" [value]="month" [disabled]="monthTillNow(month)" required>
       {{ month }}
     </mat-option>
   </mat-select>
-  <span *ngIf="m.errors?.required" style="color:red;" class="help-block">Invalid Data</span>
+  <!-- <span *ngIf="m.errors?.required" style="color:red;" class="help-block">Invalid Data</span> -->
 </mat-form-field>
 

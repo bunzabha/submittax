@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,27 +10,23 @@ export class TaxAmountComponent implements OnInit {
   @Input() form : any;
   public inputValue: any='';
   public errorBlock : boolean = false;
-  constructor() { }
+  constructor(private cp: CurrencyPipe) { }
 
   ngOnInit(): void {
   }
 
-  public removeCommas() {
-    this.inputValue = this.inputValue.replace(/,/g, '');
-  }
+
 
   public addCommas(event : any) {
     const inputValue = event.target.value;
     const saleAmount = this.form.value.saleAmount;
-    const checkInvalid = saleAmount-inputValue;
-    if (inputValue*1 != inputValue) {
-      this.inputValue = '';
-    }
-    if (this.inputValue) {
-      const formattedValue = parseFloat(this.inputValue).toFixed(2);
-      this.inputValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const checkInvalid = parseFloat(saleAmount)-parseFloat(inputValue);
+    console.log("xx : ",typeof checkInvalid)
 
-    }
+    this.form.patchValue({
+      taxAmount: this.cp.transform(event.target.value, ' '),
+    });
+
     if (Math.abs(checkInvalid) > 20.00) {
       this.form.controls['taxAmount'].setErrors({'error': true});
       this.errorBlock = true;

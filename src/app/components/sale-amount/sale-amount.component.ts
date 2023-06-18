@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { taxData } from 'src/app/model/taxData.model';
 
 @Component({
   selector: 'app-sale-amount',
@@ -10,54 +12,46 @@ export class SaleAmountComponent implements OnInit {
 
   public inputValue: any='';
   public tax : any;
-  errorBlock : boolean = false;
-  constructor() { }
+  public errorBlock : boolean = false;
+  public taxData : taxData = new taxData();
+  constructor(private cp: CurrencyPipe,
+    private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
   }
 
-  public removeCommas() {
-    this.inputValue = this.inputValue.replace(/,/g, '');
-  }
+  // public removeCommas() {
+  //   this.inputValue = this.inputValue.replace(/,/g, '');
+  // }
 
   public addCommas(event : any) {
-    const inputValue = event.target.value;
-
-    if (inputValue*1 != inputValue) {
-      this.inputValue = '';
-    }
-    if (this.inputValue) {
-      const formattedValue = parseFloat(this.inputValue).toFixed(2);
-      const penalty = this.form.value.penalty;
-      const saleAmount = inputValue;
-      const nextSale = saleAmount * 0.07;
+     if (this.inputValue) {
+      const penalty = this.form.value.selectedOption == "1" ? 200.00 : 0.00;
+      const saleAmount = this.form.value.saleAmount;
+      const nextSale = parseFloat(saleAmount) * 0.07;
       const taxA = nextSale.toFixed(2);
-      const surCharge = nextSale * 0.01;
-      const surC = surCharge.toFixed(2);
+      const surCharge = this.form.value.selectedOption == "1" ? nextSale * 0.01 : 0.00;
+      //const surC = surCharge.toFixed(2);
       const total = nextSale + surCharge + penalty;
-      const totalA =  parseFloat(total).toFixed(2);
-      const penal = 200.00;
-      const penalFix = penal.toFixed(2);
+      const penalFix = penalty.toFixed(2);
       const zero = 0.00
       const zeroFix = zero.toFixed(2)
-      const selectedOption = this.form.value.selectedOption;
-      const currency = 'THB'
-      this.inputValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      const selectedOption = this.s['selectedOption'].value;
+
 
 
       this.form.patchValue({
-        saleAmount: saleAmount,
-        taxAmount: taxA,
-        surCharge: selectedOption == '1' ? surC : zeroFix,
-        penalty: selectedOption == '0' ? zeroFix : penalFix,
-        totalAmount: totalA,
+        saleAmount: this.cp.transform(saleAmount,' '),
+        taxAmount:  this.cp.transform(taxA,' '),
+        surCharge:  this.cp.transform(surCharge,' '),
+        penalty:  this.cp.transform(penalFix,' '),
+        totalAmount:  this.cp.transform(total,' '),
       });
+      this.cdRef.detectChanges();
+      console.log("type : ",this.s['selectedOption'].value);
 
-
-
-
-    }
+     }
   }
 
 

@@ -3,6 +3,6 @@
   <mat-label class="text-withmat">5.Total amount of VAT,surcharge and penalty<br class="break-md"> to be remitted</mat-label>
 
 
-  <input class="rightWay" type="text" id="totalVat" (focus)="removeCommas()" (blur)="addCommas($event)"  formControlName="totalAmount" pattern="[0-9]+(\.[0-9]{1,2})?" placeholder="THB" readonly>
+  <input class="rightWay" type="text" formControlName="totalAmount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" placeholder="THB" readonly>
   </div>
 

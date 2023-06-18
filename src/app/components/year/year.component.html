@@ -1,9 +1,9 @@
-<mat-form-field [formGroup]="form" [ngClass]="{'is-invalid':this.form.controls['year'].errors?.required === true}">
+<mat-form-field [formGroup]="form" >
   <mat-label>Select Year</mat-label>
   <mat-select formControlName="year">
     <mat-option *ngFor="let year of years" [value]="year" [disabled]="yearTillNow(year)" required>
       {{ year }}
     </mat-option>
   </mat-select>
-  <span *ngIf="this.form.controls['year'].errors?.required === true" style="color:red;" class="help-block">Invalid Data</span>
+  <!-- <span *ngIf="this.form.controls['year'].errors?.required === true" style="color:red;" class="help-block">Invalid Data</span> -->
 </mat-form-field>

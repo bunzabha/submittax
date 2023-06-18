@@ -11,7 +11,7 @@
 
             <mat-radio-group aria-label="Select an option" class="col-sm-offset-1 col-sm-15" formControlName="selectedOption">
               <div *ngFor="let items of toFilling">
-              <mat-radio-button class="col-sm-offset-3"  [value]="items.key" (change)="sendValue(items.value)">{{items.value}}</mat-radio-button><mat-icon matTooltip="information" matTooltipPosition="right">help</mat-icon>
+              <mat-radio-button class="col-sm-offset-3"   [value]="items.key" (change)="sendValue(items.key)">{{items.value}}</mat-radio-button><mat-icon matTooltip="information" matTooltipPosition="right">help</mat-icon>
               <!-- <mat-radio-button class="col-sm-offset-3"  value="1" (change)="sendValue()">Additional Filling</mat-radio-button><mat-icon matTooltip="information" matTooltipPosition="right">help</mat-icon> -->
             </div>
             </mat-radio-group>
@@ -29,7 +29,8 @@
                 <mat-option *ngFor="let type of onTime" [value]="type" required>
                   {{ type }}
                 </mat-option>
-              </mat-select><span *ngIf="this.form.controls['type'].value ==''" style="color:red;" class="help-block">Invalid Data</span>
+              </mat-select>
+              <!-- <span *ngIf="this.form.controls['type'].value ==''" style="color:red;" class="help-block">Invalid Data</span> -->
             </mat-form-field>
             </div>
 
@@ -50,13 +51,10 @@
             <app-total-amount [form]="form"></app-total-amount>
             </div>
 
-          <!-- <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-          </mat-form-field> -->
+
           <div class="card-container">
             <button mat-button class="btn btn-secondary rounded-pill card card-small" >Back</button>
-            <button mat-button class="btn btn btn-dark rounded-pill card card-small" matStepperNext>Next</button>
+            <button mat-button class="btn btn btn-dark rounded-pill card card-small" matStepperNext (click)="nextBtn()">Next</button>
           </div>
         </form>
       </mat-step>
