@@ -1,62 +1,32 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img width="40">
-
-
   <h1>RD | SVE</h1>
   <div class="spacer"></div>
-
   <div>Time in Thailand : {{ currentDate }}
   </div>
   <div style="margin: 5px;"></div>
   <mat-icon>person</mat-icon>
   <div class="backspace text-withmat">
-
     <div class="dropdown">
-      <a class="headerFront" id="dropdownMenuButton" >
+      <a class="headerFront" id="dropdownMenuButton">
         {{user}} <mat-icon>arrow_drop_down</mat-icon>
       </a>
-
     </div>
-
-
-
   </div>
 </div>
 
 
 
 
-<div>
-
-
   <div class="content" role="main">
-
-
     <div class="top-card">
-
       <span>Submit Tax Filing</span>
-
-
     </div>
-
-
     <div class="card-container">
-
       <app-filing-type [form]="form"></app-filing-type>
-
     </div>
-
-
-
-
-
-
-
-    <!-- Footer -->
     <footer>
-
-
     </footer>
 
 
