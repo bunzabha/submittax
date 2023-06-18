@@ -44,11 +44,9 @@ export class FilingTypeComponent implements OnInit {
 
   public sendValue(value : string){
     const saleAmount = this.form.value.saleAmount;
-    console.log("typeof : ",typeof saleAmount)
     if (value == "0") {
       if (saleAmount) {
         const saleRe = saleAmount.replace(/,/g,'')
-        console.log("typeof : ",typeof saleRe)
         const penalty = 0.00;
         const nextSale = parseFloat(saleRe) * 0.07;
         const taxA = nextSale.toFixed(2);

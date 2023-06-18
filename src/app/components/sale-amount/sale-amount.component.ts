@@ -26,10 +26,8 @@ export class SaleAmountComponent implements OnInit {
   // }
 
   public addCommas(event : any) {
-    console.log("check event : ",event)
     const saleAmount = this.form.value.saleAmount;
     const delCommad = saleAmount.replace(/,/g,'')
-    console.log("check event2 : ",saleAmount)
      if (saleAmount) {
       const penalty = this.form.value.selectedOption == "1" ? 200.00 : 0.00;
       const nextSale = parseFloat(delCommad) * 0.07;
