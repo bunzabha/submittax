@@ -1,7 +1,9 @@
 <div class="container" [formGroup]="form">
 
-  <mat-label class="text-withmat">4.Penalty</mat-label><mat-icon matTooltip="information" matTooltipPosition="right" class="badgeicon">help</mat-icon>
+  <mat-label class="text-withmat">4.Penalty</mat-label>
+  <mat-icon matTooltip="information" matTooltipPosition="right" class="badgeicon">help</mat-icon>
 
-  <input class="rightWay" type="text"  formControlName="penalty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" placeholder="THB" readonly>
-  </div>
-
+  <input class="rightWay" type="text" formControlName="penalty"
+    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+    placeholder="THB" readonly>
+</div>
