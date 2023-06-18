@@ -8,6 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 
 
 
+
 @Component({
   selector: 'app-filing-type',
   templateUrl: './filing-type.component.html',
@@ -43,10 +44,11 @@ export class FilingTypeComponent implements OnInit {
 
   public sendValue(value : string){
     const saleAmount = this.form.value.saleAmount;
-
+    console.log("typeof : ",typeof saleAmount)
     if (value == "0") {
       if (saleAmount) {
-        const saleRe = saleAmount.replace(',','')
+        const saleRe = saleAmount.replace(/,/g,'')
+        console.log("typeof : ",typeof saleRe)
         const penalty = 0.00;
         const nextSale = parseFloat(saleRe) * 0.07;
         const taxA = nextSale.toFixed(2);
@@ -67,7 +69,7 @@ export class FilingTypeComponent implements OnInit {
     }
     else{
       if(saleAmount){
-        const saleRe = saleAmount.replace(',','')
+        const saleRe = saleAmount.replace(/,/g,'')
         const penalty = 200.00;
         const nextSale = parseFloat(saleRe) * 0.07;
         const taxA = nextSale.toFixed(2);
@@ -127,7 +129,7 @@ export class FilingTypeComponent implements OnInit {
 
 
 
-    dialogRef.afterClosed().subscribe((xx ) =>{
+    dialogRef.afterClosed().subscribe((xx : any) =>{
       console.log("after closed : ",xx)
 
 

@@ -28,10 +28,11 @@ export class SaleAmountComponent implements OnInit {
   public addCommas(event : any) {
     console.log("check event : ",event)
     const saleAmount = this.form.value.saleAmount;
+    const delCommad = saleAmount.replace(/,/g,'')
     console.log("check event2 : ",saleAmount)
      if (saleAmount) {
       const penalty = this.form.value.selectedOption == "1" ? 200.00 : 0.00;
-      const nextSale = parseFloat(saleAmount) * 0.07;
+      const nextSale = parseFloat(delCommad) * 0.07;
       const taxA = nextSale.toFixed(2);
       const surCharge = this.form.value.selectedOption == "1" ? nextSale * 0.01 : 0.00;
       //const surC = surCharge.toFixed(2);
@@ -44,7 +45,7 @@ export class SaleAmountComponent implements OnInit {
 
 
       this.form.patchValue({
-        saleAmount: this.cp.transform(saleAmount,' '),
+        saleAmount: this.cp.transform(delCommad,' '),
         taxAmount:  this.cp.transform(taxA,' '),
         surCharge:  this.cp.transform(surCharge,' '),
         penalty:  this.cp.transform(penalFix,' '),
@@ -55,13 +56,16 @@ export class SaleAmountComponent implements OnInit {
 
      }
      else{
-      this.form.patchValue({
-        saleAmount: this.cp.transform(saleAmount,' '),
-        taxAmount:  this.cp.transform(0.00,' '),
-        surCharge:  this.cp.transform(0.00,' '),
-        penalty:  this.cp.transform(200.00,' '),
-        totalAmount:  this.cp.transform(0.00,' '),
-      });
+       if (saleAmount) {
+        this.form.patchValue({
+          saleAmount: this.cp.transform(delCommad,' '),
+          taxAmount:  this.cp.transform(0.00,' '),
+          surCharge:  this.cp.transform(0.00,' '),
+          penalty:  this.cp.transform(200.00,' '),
+          totalAmount:  this.cp.transform(0.00,' '),
+        });
+       }
+
      }
   }
 
