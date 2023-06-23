@@ -71,7 +71,7 @@ export class FilingTypeComponent implements OnInit {
         const penalty = 200.00;
         const nextSale = parseFloat(saleRe) * 0.07;
         const taxA = nextSale.toFixed(2);
-        const surCharge = nextSale * 0.01;
+        const surCharge = nextSale * 0.1;
         //const surC = surCharge.toFixed(2);
         const total = nextSale + surCharge + penalty;
         const penalFix = penalty.toFixed(2);

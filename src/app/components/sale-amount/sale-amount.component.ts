@@ -32,7 +32,7 @@ export class SaleAmountComponent implements OnInit {
       const penalty = this.form.value.selectedOption == "1" ? 200.00 : 0.00;
       const nextSale = parseFloat(delCommad) * 0.07;
       const taxA = nextSale.toFixed(2);
-      const surCharge = this.form.value.selectedOption == "1" ? nextSale * 0.01 : 0.00;
+      const surCharge = this.form.value.selectedOption == "1" ? nextSale * 0.1 : 0.00;
       //const surC = surCharge.toFixed(2);
       const total = nextSale + surCharge + penalty;
       const penalFix = penalty.toFixed(2);
